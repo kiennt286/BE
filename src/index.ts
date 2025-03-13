@@ -20,23 +20,7 @@ app.get("/", (req, res) => {
   });
 });
 
-app.get("/test-db", async (req, res) => {
-  try {
-    const result = await db.execute(sql`SELECT 1`);
-    res.json({ 
-      message: "Database connection successful!",
-      result
-    });
-  } catch (error) {
-    // Ép kiểu error thành Error
-    const err = error as Error;
-    console.error("Database connection error:", err);
-    res.status(500).json({ 
-      message: "Database connection failed!",
-      error: err.message // Bây giờ TypeScript sẽ không báo lỗi
-    });
-  }
-});
+
 app.use("/tasks", taskRoutes);
 app.use("/columns", columnRoutes);
 
